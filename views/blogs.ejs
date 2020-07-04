@@ -1,0 +1,28 @@
+<%- include("./partials/header") %>
+        
+<h1>
+	Blogs ayenge yaha pe
+</h1>
+
+<%blogs.forEach(function(blog){  %>
+	<div>
+		<h2>
+		<%= blog.title %>
+		</h2>
+		<h3>
+			<%=blog.category%>
+		</h3>
+		<h3>
+			<%=blog.author%>
+		</h3>
+		<img src="<%=blog.image%>"> 
+		<p>
+			<%=blog.body%>
+		</p>
+		<span><%=blog.created%></span>
+</div>
+<% }) %>
+
+<%- include("./partials/footer") %>
+
+

@@ -1,0 +1,32 @@
+<%- include("./partials/header") %>
+
+                   
+                    <div class="new-blog-form text-center">
+                        <div class="title">
+                            Add <span>Blog</span>
+                        </div>
+                        
+                        <br>
+                        <div>
+                            <form action="/blogs" method="POST">
+                                <input class="form-group input-element" type="text" name="blog[title]" placeholder="title">
+                                <br>
+                                <input class="form-group input-element" type="text" name="blog[author]" placeholder="author">
+                                <br>
+                                <input class="form-group input-element"  type="text" name="blog[category]" placeholder="category">
+                                <br>
+                                <input class="form-group input-element" type="text" name="blog[image]" placeholder="image URL">
+                                <br>
+                                <textarea class="form-group input-element" name="blog[body]" placeholder="blog post"></textarea>
+                                    <br>
+                                	<input class="submit" type="submit" value="Submit">
+                                
+                            </form>
+                        </div>
+    
+                    </div>
+                   
+
+
+<%- include("./partials/footer") %>
+
