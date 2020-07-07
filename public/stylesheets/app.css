@@ -41,6 +41,7 @@ html {
     stroke-linecap:round;
     fill:transparent;
   }
+
   
   .smile, .eyes {
     stroke:black;
@@ -943,4 +944,73 @@ canvas {
     display: none;
   }
 }
+
+.input-element{
+  min-width: 360px;
+  margin: 20px;
+  line-height: 2;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.input-element:focus{
+  outline: 2px solid #d43968;
+  background-color: rgb(255, 245, 246);
+}
+.new-blog-form{
+  min-height: 580px;
+  font-family: 'Josefin Sans', sans-serif;
+
+}
+.new-blog-form .title{
+  font-size: 4rem;
+  padding-top: 0px;
+
+}
+
+.new-blog-form span{
+  color: #d43968;
+}
+
+.new-blog-form textarea{
+	min-height: 2+00px
+}
+
+.new-blog-form .submit{
+	width: 112px;
+	height: 37px;
+	border-radius: 19px;
+	background-clip: padding-box;
+	background-color: #d43968;
+	border:1px solid #d43968;
+	border:none;
+  	color: #fff;
+  	-moz-border-radius: 19px;
+  	-webkit-border-radius: 19px;
+  	-moz-background-clip: padding;
+	-webkit-background-clip: padding-box;
+	
+}
+
+.submit:hover{
+  background-color: #fff; 
+  border:1px solid #d43968; 
+  color:#d43968; 
+  cursor:pointer;}
+
+.submit:focus{
+  outline: none;}
+
+@media (max-width:438px){
+    .input-element{
+      min-width: 240px;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    .new-blog-form .title{
+      font-size:3.5rem;
+    }
+  }
+  
 

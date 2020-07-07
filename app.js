@@ -46,6 +46,13 @@ app.post("/blogs", function(req,res){
 	});
 });
 
+app.get("/blogs/:id", function(req,res){
+	Blog.findById(req.params.id, function(err, foundBlog){
+		res.remder("show",{blog:foundBlog});
+	});
+	
+});
+
 app.listen(3000,function(){
 	console.log("positivegasms server has started!")
 });
