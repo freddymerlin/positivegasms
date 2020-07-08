@@ -1,0 +1,56 @@
+<%- include("./partials/header") %>
+                  
+            <div class="d-flex justify-content-center">
+              <div class="blog-show">
+                <button type="button" class="btn btn <%=blog.category%> category btn-sm"><%=blog.category%></button>
+                <h1 class="blog-title"><%=blog.title%></h1>
+                <div class="blog-subtitle">"<%=blog.description%>"</div>
+                <div class="row blog-top">
+                  <div class="col-md-6">
+                    <div class="author-info">  
+                      <span class="author-image">
+                        <img src="<%=blog.author_image%>"  alt="" >
+                      </span>
+                      <span class="author-name"><%=blog.author%></span>
+                    </div>
+                  </div>
+                  <div class="col-md-6 share-col" >
+                    <div class="share-upper">
+                      <a href=""><i class="fab fa-facebook-f"></i></a>
+                      <a href=""><i class="fab fa-twitter"></i></a>
+                      <a href=""><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="blog-image-container">
+                  <img src="<%=blog.image%>" alt="">
+                </div>
+                <div class="image-subtitle text-center"><%=blog.image_subtitle%></div>
+                <div class="blog-content">
+                  <p><%-blog.body%></p>
+                </div>
+                <div class="lower-blog-info">
+                  <hr>
+                  <div class="share-lower">
+                      <span>Share</span>
+                      <div class="social-shares">
+                          <a href=""><i class="fab fa-facebook-f"></i></a>
+                          <a href=""><i class="fab fa-twitter"></i></a>
+                          <a href=""><i class="fab fa-whatsapp"></i></a>
+                          <a href=""><i class="far fa-copy"></i></a>
+                      </div>
+                  </div>
+
+                </div>
+			  <div class="admin-control">
+				  <h3>
+					Admin Changes:   
+				  </h3>
+				  <a class="btn btn-outline-info" href="/blogs/<%= blog._id %>/edit"> Edit</a>
+				  <form action="/blogs/<%=blog._id%>?_method=DELETE" method="POST">
+					<button type="submit" class="btn btn-outline-danger">Delete Blog</button>
+				  </form>
+              </div>
+          </div>
+<%- include("./partials/footer") %>
+ 

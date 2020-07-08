@@ -9,11 +9,18 @@
                             <form action="/blogs" method="POST">
                                 <input class="form-group input-element" type="text" name="blog[title]" placeholder="title">
                                 <br>
+								<input class="form-group input-element" type="text" name="blog[description]" placeholder="description">
+                                <br>
                                 <input class="form-group input-element" type="text" name="blog[author]" placeholder="author">
                                 <br>
-                                <input class="form-group input-element"  type="text" name="blog[category]" placeholder="category">
+								<input class="form-group input-element" type="text" name="blog[author_image]" placeholder="author-image">
+                                <br>
+								
+                                <input class="form-group input-element"  type="text" name="blog[category]" placeholder="category (lowercase)">
                                 <br>
                                 <input class="form-group input-element" type="text" name="blog[image]" placeholder="image URL">
+                                <br>
+								<input class="form-group input-element" type="text" name="blog[image_subtitle]" placeholder="image-info">
                                 <br>
                                 <textarea class="form-group input-element" name="blog[body]" placeholder="blog post"></textarea>
                                 <br>
