@@ -37,14 +37,42 @@ app.get("/", function(req,res){
 })
 
 app.get("/blogs", function(req,res){
-	Blog.find({}, function(err,blogs){
-		if(err){
-			console.log("Error!");
-		}
-		else{
-			res.render("blogs", {blogs: blogs});
-		}
-	});
+	var perPage = 5;
+    var pageQuery = parseInt(req.query.page);
+    var pageNumber = pageQuery ? pageQuery : 1;
+	Blog.find({}).skip((perPage * pageNumber) - perPage).limit(perPage).exec(function (err, allBlogs) {
+        Blog.count().exec(function (err, count) {
+            if (err) {
+                console.log(err);
+            } else {
+                res.render("blogs", {
+                    blogs: allBlogs,
+                    current: pageNumber,
+                    pages: Math.ceil(count / perPage)
+                });
+            }
+        });
+    });
+})
+
+
+app.get("/blogs/:category", function(req,res){
+	var perPage = 5;
+    var pageQuery = parseInt(req.query.page);
+    var pageNumber = pageQuery ? pageQuery : 1;
+	Blog.find({ category: req.params.category }).skip((perPage * pageNumber) - perPage).limit(perPage).exec(function (err, allBlogs) {
+        Blog.count({ category: req.params.category }).exec(function (err, count) {
+            if (err) {
+                console.log(err);
+            } else {
+                res.render("blogs", {
+                    blogs: allBlogs,
+                    current: pageNumber,
+                    pages: Math.ceil(count / perPage)
+                });
+            }
+        });
+    });
 })
 
 app.get("/blogs/new", function(req,res){
