@@ -22,36 +22,36 @@
           
                 <div class="row d-flex">
                   <div class="col-lg-8 col-12 main-blog ">
-                    <div class="main-content" style="background-image:url(https://images.unsplash.com/photo-1487452066049-a710f7296400?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80)">
+                    <div class="main-content" style="background-image:url(<%=blogs[5].image%>)">
                       <div class="lower-info">
-                        <button type="button" class="btn btn category first btn-sm">Travel</button>
-                        <h3> Title Lorem ipsum, dolor sit amet consectetur adipisicing elit.</h3>
-                        <p> Date </p>
+                        <a  href="/blogs/sorted/<%=blogs[5].category%>" ><button type="button" class="btn btn category <%=blogs[5].category%> btn-sm"><%=blogs[5].category%></button></a>
+                        <h3><%=blogs[5].title%> </h3>
+                        <p> <%=blogs[5].created%> </p>
                       </div>
-                      <i class="fas fa-arrow-circle-right"></i>
+                      <a href="/blogs/<%=blogs[5]._id%>"> <i class="fas fa-arrow-circle-right"></i> </a>
                     </div>
                     
                   </div>
                   <div class="col-lg-4 col-12 p-0">
                     <div class="col-12 side-blog">
-                      <div class="main-content" style="background-image:url(https://images.unsplash.com/photo-1592671748854-2e0ed15b0441?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1049&q=80)">
+                      <div class="main-content" style="background-image:url(<%=blogs[1].image%>)">
                         <div class="lower-info">
-                          <button type="button" class="btn btn category second btn-sm">Health</button>
-                          <h3> Title Lorem ipsum, dolor sit amet </h3>
-                          <p> Date </p>
+                          <a  href="/blogs/sorted/<%=blogs[1].category%>" ><button type="button" class="btn btn category <%=blogs[1].category%> btn-sm"><%=blogs[1].category%></button></a>
+                          <h3> <%=blogs[1].title%> </h3>
+                          <p> <%=blogs[1].created%> </p>
                         </div>
-                        <i class="fas fa-arrow-circle-right"></i>
+                        <a href="/blogs/<%=blogs[1]._id%>"> <i class="fas fa-arrow-circle-right"></i> </a>
                       </div>
                     
                     </div>
                     <div class="col-12 side-blog">
-                      <div class="main-content" style="background-image:url(https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80)">
+                      <div class="main-content" style="background-image:url(<%=blogs[4].image%>)">
                         <div class="lower-info">
-                          <button type="button" class="btn btn category third btn-sm">Lifestyle</button>
-                          <h3> Title Lorem ipsum, dolor sit amet </h3>
-                          <p> Date </p>
+                          <a  href="/blogs/sorted/<%=blogs[4].category%>" ><button type="button" class="btn btn category <%=blogs[4].category%> btn-sm"><%=blogs[4].category%></button></a>
+                          <h3> <%=blogs[4].title%> </h3>
+                          <p> <%=blogs[4].created%> </p>
                         </div>
-                        <i class="fas fa-arrow-circle-right"></i>
+                        <a href="/blogs/<%=blogs[4]._id%>"> <i class="fas fa-arrow-circle-right"></i> </a>
                       </div>
                       
                     </div>
@@ -66,89 +66,41 @@
                   <div class="col-xl-8 col-12 p-0">
                     <div class="row small-blogs d-flex">
                       <div class="col-12 heading" > <h3>Top posts</h3>  </div>
-                      <div class="col-md-4 col-sm-6 col-12">
-              
-                        <div class="card-container">
-                          <div class="image-holder"  style="background-image:url(https://images.unsplash.com/photo-1574237428925-eae45da36a1c?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80)" >
-                          </div>  
-                        </div>
-                        <div class="small-blog-title underlined underlined--thick"> Title Lorem ipsum dolor sit. Lorem ipsum dolor sit amet.</div>
-                      </div>
+						
+					  <% for(let i=0; i<8; i++){%>
+							<% let blogNumber = 0; %>
+							<% if(i==0){blogNumber = 0;} %>
+							<% if(i==1){blogNumber = 1;} %>
+							<% if(i==2){blogNumber = 2;} %>
+							<% if(i==3){blogNumber = 3;} %>
+							<% if(i==4){blogNumber = 4;} %>
+							<% if(i==5){blogNumber = 5;} %>
+							<% if(i==6){blogNumber = 6;} %>
+							<% if(i==7){blogNumber = 7;} %>
+							<div class="col-md-4 col-sm-6 col-12">
+								<a href="/blogs/<%=blogs[blogNumber]._id%>">
+									<div class="card-container">
+									  <div class="image-holder"  style="background-image:url(<%=blogs[blogNumber].image%>)" >
+									</div>  
+									</div>
+									<div class="small-blog-title underlined underlined--thick"><%=blogs[blogNumber].title%></div>
+								</a>
+							</div>
+					  <% }	%>
+                      
 
-                      <div class="col-md-4  col-sm-6 col-12"> 
-                        
-                        <div class="card-container">
-                          <div class="image-holder"  style="background-image:url(https://images.unsplash.com/photo-1592655099313-6f4d6465e5bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80)" >
-                          </div>  
-                        </div>
-                        <div class="small-blog-title underlined underlined--thick"> Title Lorem ipsum dolor sit. Lorem ipsum dolor sit amet.</div>
-                       
-                      </div>
-
-                      <div class="col-md-4  col-sm-6 col-12"> 
-                        <div class="card-container">
-                          <div class="image-holder"  style="background-image:url(https://images.unsplash.com/photo-1592763479802-7ccf74e64a6d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80)" >
-                          </div>  
-                        </div>
-                        <div class="small-blog-title underlined underlined--thick"> Title sit amet.</div>
-
-                      </div>
-
-                      <div class="col-md-4  col-sm-6 col-12">
-
-                        <div class="card-container">
-                          <div class="image-holder"  style="background-image:url(https://images.unsplash.com/photo-1592707463561-fb388ffc7c66?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80)" >
-                          </div>  
-                        </div>
-                        <div class="small-blog-title underlined underlined--thick"> Title Lorem ipsum dolor sit. Lorem ipsum dolor sit amet.</div>
-
-                      </div>
-
-                      <div class="col-md-4  col-sm-6 col-12"> 
-                        <div class="card-container">
-                          <div class="image-holder"  style="background-image:url(https://images.unsplash.com/photo-1592500553342-38a28890c03b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80)" >
-                          </div>  
-                        </div>
-                        <div class="small-blog-title underlined underlined--thick"> Title Lorem ipsum dolor sit. dolor sit amet.</div>
-
-                      </div>
-                      <div class="col-md-4  col-sm-6 col-12"> 
-                        
-                        <div class="card-container">
-                          <div class="image-holder"  style="background-image:url(https://images.unsplash.com/photo-1592771404380-467f535c7c4f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80)" >
-                          </div>  
-                        </div>
-                        
-                        <div class="small-blog-title underlined underlined--thick"> Title Lorem sit. Lorem ipsum dolor sit amet.</div>
-                        
-                      </div>
-                      <div class="col-md-4  col-sm-6 col-12">
-
-                        <div class="card-container">
-                          <div class="image-holder"  style="background-image:url(https://images.unsplash.com/photo-1592810249777-0eba22de200b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=655&q=80)" >
-                          </div>  
-                        </div>
-                        <div class="small-blog-title underlined underlined--thick "> Lorem ipsum dolor sit amet.</div>
-
-                      </div>
-
-                      <div class="col-md-4  col-sm-6 col-12"> 
-                        <div class="card-container">
-                          <div class="image-holder"  style="background-image:url(https://images.unsplash.com/photo-1592810249740-a434315b5e49?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80)" >
-                          </div>  
-                        </div>
-                        <div class="small-blog-title underlined underlined--thick"> Title Lorem. Lorem ipsum dolor sit amet.</div>
-
-                      </div>
+                     
                       <div class="col-md-4 col-sm-6 d-sm-none d-md-block col-12"> 
-                        
+                        <a href="/blogs/<%=blogs[9]._id%>">
                         <div class="card-container">
-                          <div class="image-holder"  style="background-image:url(https://images.unsplash.com/photo-1592686954679-0f3a55e0912c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80)" >
+                          <div class="image-holder"  style="background-image:url(<%=blogs[9].image%>)" >
                           </div>  
                         </div>
+							
+							
                         
-                        <div class="small-blog-title underlined underlined--thick"> Title Lorem Lorem ipsum dolor sit amet.</div>
-                        
+                        <div class="small-blog-title underlined underlined--thick"><%=blogs[9].title%></div>
+                        </a>
                       </div>
                     </div>
 
@@ -160,30 +112,32 @@
                       <div class="col-12 heading" > <h3>Categories</h3></div>
                       <div>
                         <ul>
-                          <li class="list d-flex justify-content-between align-items-center">
-                            Superheroes
-                            <span class="badge badge-dark badge-pill">14</span>
-                          </li>
-                          <li class="list d-flex justify-content-between align-items-center">
-                            Travel
-                            <span class="badge badge-dark badge-pill">2</span>
-                          </li>
-                          <li class="list d-flex justify-content-between align-items-center">
-                            Entertainment
-                            <span class="badge badge-dark badge-pill">14</span>
-                          </li>
-                          <li class="list d-flex justify-content-between align-items-center">
-                            Food
-                            <span class="badge badge-dark badge-pill">14</span>
-                          </li>
-                          <li class="list d-flex justify-content-between align-items-center">
-                            Health
-                            <span class="badge badge-dark badge-pill">1</span>
-                          </li>
-                          <li class="list d-flex justify-content-between align-items-center">
-                            Lifestyle
-                            <span class="badge badge-dark badge-pill">1</span>
-                          </li>
+                            <li class="list d-flex justify-content-between align-items-center"><a href="/blogs/sorted/superheroes">
+                            Superheroes</a>
+                            <a href="/blogs/sorted/superheroes"><span class="badge badge-dark badge-pill"><%=superheroesCount%></span></a>
+                           </li>
+							<li class="list d-flex justify-content-between align-items-center"><a href="/blogs/sorted/travel">
+                            Travel</a>
+                            <a href="/blogs/sorted/travel"><span class="badge badge-dark badge-pill"><%=travelCount%></span></a>
+                           </li>
+							<li class="list d-flex justify-content-between align-items-center"><a href="/blogs/sorted/entertainment">
+                            Entertainment</a>
+                            <a href="/blogs/sorted/entertainment"><span class="badge badge-dark badge-pill"><%=entertainmentCount%></span></a>
+                           </li>
+							<li class="list d-flex justify-content-between align-items-center"><a href="/blogs/sorted/food">
+							Food</a>
+                            <a href="/blogs/sorted/food"><span class="badge badge-dark badge-pill"><%=foodCount%></span></a>
+                           </li>
+							<li class="list d-flex justify-content-between align-items-center"><a href="/blogs/sorted/health">
+							Health</a>
+                            <a href="/blogs/sorted/health"><span class="badge badge-dark badge-pill"><%=healthCount%></span></a>
+                           </li>
+							<li class="list d-flex justify-content-between align-items-center"><a href="/blogs/sorted/lifestyle">
+							Lifestyle</a>
+                            <a href="/blogs/sorted/lifestyle"><span class="badge badge-dark badge-pill"><%=lifestyleCount%></span></a>
+                           </li>
+							
+                          
                         </ul>
                       </div>
                     </div>
@@ -200,6 +154,8 @@
 
                 </div>
 
+				<hr>
+
                 <div class="row get-connected d-flex text-center align-items-center justify-content-center">
                   <div class="col-lg-4 col-12"><h3 class="display-6">Want more?*</h3></div>
                   <div class="col-lg-4 col-12">Odit impedit at vitae veritatis dolore, eius facilis saepe autem perferendis, exercitationem fugit!</div>
@@ -214,9 +170,7 @@
                   
                   <hr>
 
-                  
-
                 </div>
                 
             
-<%- include("./partials/footer") %>
+<%- include("./partials/footer",{blogs:"blogs"}) %>

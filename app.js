@@ -32,8 +32,47 @@ let blogSchema = new mongoose.Schema({
 
 let Blog = mongoose.model("Blog", blogSchema);
 
+
+
+let foodCount = 0;
+let lifestyleCount = 0;
+let entertainmentCount = 0;
+let healthCount = 0;
+let travelCount = 0;
+let superheroesCount = 0;
+
+Blog.find({}).exec(function (err, allBlogs){
+	
+	allBlogs.forEach(function(blogs){
+		
+		if(blogs.category == "food"){foodCount++;}
+		if(blogs.category == "lifestyle"){lifestyleCount++;}
+		if(blogs.category == "entertainment"){entertainmentCount++;}
+		if(blogs.category == "health"){healthCount++;}
+		if(blogs.category == "travel"){travelCount++;}
+		if(blogs.category == "superheroes"){superheroesCount++;}
+	})
+	
+});
+
+
 app.get("/", function(req,res){
-	res.render("index");
+	Blog.find({}, function(err, blogs){
+		if(err){
+			console.log("Error!");
+		}
+		else{
+			res.render("index", 
+					   {blogs:blogs,
+						mainblogs:blogs,
+						superheroesCount: superheroesCount,
+						travelCount: travelCount,
+						foodCount: foodCount,
+						healthCount: healthCount,
+						lifestyleCount: lifestyleCount,
+						entertainmentCount: entertainmentCount});
+		}
+	})
 })
 
 app.get("/blogs", function(req,res){
@@ -45,18 +84,22 @@ app.get("/blogs", function(req,res){
             if (err) {
                 console.log(err);
             } else {
-                res.render("blogs", {
-                    blogs: allBlogs,
-                    current: pageNumber,
-                    pages: Math.ceil(count / perPage)
-                });
+				Blog.find({}, function(err, mainblogs){
+						res.render("blogs", {
+						blogs: allBlogs,
+						mainblogs: mainblogs,
+						current: pageNumber,
+						pages: Math.ceil(count / perPage)
+                	});
+				});
+                
             }
         });
     });
 })
 
 
-app.get("/blogs/:category", function(req,res){
+app.get("/blogs/sorted/:category", function(req,res){
 	var perPage = 5;
     var pageQuery = parseInt(req.query.page);
     var pageNumber = pageQuery ? pageQuery : 1;
@@ -65,18 +108,26 @@ app.get("/blogs/:category", function(req,res){
             if (err) {
                 console.log(err);
             } else {
-                res.render("blogs", {
-                    blogs: allBlogs,
-                    current: pageNumber,
-                    pages: Math.ceil(count / perPage)
-                });
+				Blog.find({}, function(err, mainblogs){
+					res.render("categories", {
+						blogs: allBlogs,
+						mainblogs: mainblogs,
+						category_name: req.params.category,
+						current: pageNumber,
+						pages: Math.ceil(count / perPage)
+					});
+				});
+                
             }
         });
     });
 })
 
 app.get("/blogs/new", function(req,res){
-	res.render("new");
+	Blog.find({}, function(err, blogs){
+		res.render("new", {mainblogs:blogs});
+	});
+	
 });
 
 app.post("/blogs", function(req,res){
@@ -88,14 +139,19 @@ app.post("/blogs", function(req,res){
 
 app.get("/blogs/:id", function(req,res){
 	Blog.findById(req.params.id, function(err, foundBlog){
-		res.render("show",{blog:foundBlog});
+		Blog.find({}, function(err, blogs){
+			res.render("show",{blog:foundBlog,mainblogs:blogs});
+		});
 	});
 	
 });
 
 app.get("/blogs/:id/edit", function(req,res){
 	Blog.findById(req.params.id, function(err, foundBlog){
-		res.render("edit",{blog:foundBlog});
+		Blog.find({}, function(err, blogs){
+			res.render("edit",{blog:foundBlog, mainblogs:blogs});
+		});
+		
 	});
 	
 });

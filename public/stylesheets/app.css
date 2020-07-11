@@ -310,7 +310,7 @@ footer .col-md-3{
   min-height: 200px;
   margin-top: 30px;
   background-color: blanchedalmond;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 
 }
 .get-connected h3{
@@ -694,7 +694,7 @@ footer a:hover{
 
 #latest-posts{
   padding: 10px;
-  height: 100px;
+  height: 120px;
   margin: 0px;
   
   padding-bottom: 0px;
@@ -727,28 +727,47 @@ footer a:hover{
 }
 #latest-posts .image{
   height: 100%;
-  min-width: 120px;
+  width: 120px;
+  min-width: 0px;
   float: left;
-
   border-bottom: 1px solid grey;
   padding-bottom: 20px;
 
   
 }
 
-#latest-posts .description .info {
-  min-width: 143px;
-  max-width: 390px;
+@media (max-width:500px){
+  #latest-posts .image{
+	  width: 60px;
+  }
 }
+
+@media (max-width:326px){
+  #latest-posts .description .info{
+	  font-size: 0.75rem;
+  }
+}
+
+@media (max-width:299px){
+  .main-footer .latest-container{
+	 padding-left: 0px;
+	 padding-right: 0px;
+  }
+}
+
+
+#latest-posts .image-holder{
+	min-width: 0px;
+}
+
 #latest-posts .description{
   height: 100%;
   color: white;
   padding-left: 20px;
   padding-right: 0;
-  width: fit-content;
-  width: 390px;
+  width: 70%;
   border-bottom: 1px solid grey;
-  padding-bottom: 20px;
+
 
 }
 
@@ -1033,7 +1052,7 @@ canvas {
   }
   
   .food{
-    background-color:#1b1464
+    background-color:#44549c;
 
   }
 
@@ -1062,11 +1081,11 @@ canvas {
 
   .share-upper{
     position: absolute;
-    bottom: 10px;
+    bottom: 15px;
     right: 0px;
   }
   .share-upper a{
-    color: black;
+    color: #420618;
     padding: 10px;
   }
   .author-name{
@@ -1284,9 +1303,13 @@ canvas {
 	font-weight: light;
 }
 
+.blog-show{
+	background-color: #fff1e3;
+	padding:20px;
+}
 
 .blog-card{
-  background-color: rgb(250, 247, 244);
+  background-color: blanchedalmond;
   font-family: 'Josefin Sans', sans-serif;
   max-width: 900px;
   width:900px;
@@ -1334,12 +1357,19 @@ canvas {
 
 .show-blog{
   position: absolute;
-  right: 20px;
+  right: 45px;
 }
 
 
 .show-blog:hover{
   text-decoration: none;
+}
+
+@media (max-width:380px){
+  .show-blog{
+	  position: absolute;
+	  right: 20px;
+	}
 }
 
 
@@ -1378,4 +1408,29 @@ canvas {
 
 }
 
+
+.title-link-small{
+	color:#2b2b2b;
+	
+}
+.title-link-small:hover{
+	text-decoration: none;
+	color:#2b2b2b;
+}
+.small-blogs a:hover{
+	text-decoration: none;
+}
+.categories-sidebar a{
+	color:#2b2b2b;
+}
+
+.categories-sidebar a:hover{
+	color:#2b2b2b;
+	text-decoration: none;
+}
+
+.categories-sidebar a .badge:hover{
+	background-color:#d43968;
+	text-decoration: none;
+}
 

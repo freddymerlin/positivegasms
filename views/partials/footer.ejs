@@ -49,44 +49,47 @@
             <div class="col-lg-6 col-12 latest-container  align-items-enter"> 
               <div class="latest-posts title-lower">LATEST POSTS <br></div> 
               
-              
+
             
               <div id="latest-posts" class="d-flex justify-content-center">
-                <div class="image">
+                <a href="/blogs/<%=mainblogs[mainblogs.length-1]._id%>"><div class="image">
                   <div class="card-container-footer">
-                    <div class="image-holder"  style="background-image:url(https://images.unsplash.com/photo-1499380848949-2960e980ed02?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80)" >
+                    <div class="image-holder"  style="background-image:url(<%=mainblogs[mainblogs.length-1].image%>)" >
                     </div>  
                   </div>
                 </div>
                 <div class="description d-flex m=0">
-                  <span class="info">Lorem ipsum dolor sit amet consectetur adipisicing elit. <br></span> 
+                  <span class="info"><%=(mainblogs[mainblogs.length-1].description).substring(0,70)%>..</span> 
                 </div>
-                
+                </a>
               </div>
               
               <div id="latest-posts" class="d-flex justify-content-center">
-                <div class="image">
+                <a href="/blogs/<%=mainblogs[mainblogs.length-2]._id%>"><div class="image">
                   <div class="card-container-footer">
-                    <div class="image-holder"  style="background-image:url(https://images.unsplash.com/photo-1593105293413-3edac41a8e07?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=696&q=80)" >
+                    <div class="image-holder"  style="background-image:url(<%=mainblogs[mainblogs.length-2].image%>)" >
                     </div>  
                   </div>
                 </div>
                 <div class="description d-flex m=0">
-                  <span class="info">Lorem ipsum dolor sit amet consectetur <br></span> 
+                  <span class="info"><%=(mainblogs[mainblogs.length-2].description).substring(0,70)%>..</span> 
                 </div>
+                </a>
               </div>
-              <div id="latest-posts" class="d-flex justify-content-center">
-                <div class="image last">
+				
+ 			 <div id="latest-posts" class="d-flex justify-content-center">
+                <a href="/blogs/<%=mainblogs[mainblogs.length-3]._id%>"><div class="image last">
                   <div class="card-container-footer">
-                    <div class="image-holder"  style="background-image:url(https://images.unsplash.com/photo-1593022910074-3db767d47f80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80)" >
+                    <div class="image-holder"  style="background-image:url(<%=mainblogs[mainblogs.length-3].image%>)" >
                     </div>  
                   </div>
                 </div>
                 <div class="description last d-flex m=0">
-                  <span class="info">Lorem ipsum dolor sitr sit amet consectetur adipisicing elit. Sint, labore. <br></span> 
+                  <span class="info"><%=(mainblogs[mainblogs.length-3].description).substring(0,70)%>..</span> 
                 </div>
-                
+                </a>
               </div>
+				
               <hr class="divider d-block d-lg-none">
             </div>
             <div class="col-lg-3 col-12 hyperlinks">
