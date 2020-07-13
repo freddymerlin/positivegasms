@@ -1,5 +1,15 @@
 <%- include("./partials/header") %>
-
+					<script>
+						let password = prompt("Enter Password");
+						if(password=="123"){
+							alert("Verified, click OK to continue");
+						}
+						else{
+							alert("Wrong Password");
+							window.location.reload();
+						}
+					</script>
+                   
                    
                     <div class="new-blog-form text-center">
                         <div class="title">

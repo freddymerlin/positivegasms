@@ -1,35 +1,54 @@
 <%- include("./partials/header") %>
-
+					
+					<script>
+						let password = prompt("Enter Password");
+						if(password=="123"){
+							alert("Verified, click OK to continue");
+						}
+						else{
+							alert("Wrong Password");
+							window.location.reload();
+						}
+					</script>
                    
-                    <div class="new-blog-form text-center">
-                        <div class="title">
-                            Edit <span>Blog</span>
-                        </div>
-                        <div>
-                            <form action="/blogs/<%= blog._id%>?_method=PUT" method="POST">
-                                <input class="form-group input-element" type="text" name="blog[title]" value="<%= blog.title%>">
-                                <br>
-								<input class="form-group input-element" type="text" name="blog[description]" value="<%= blog.description%>">
-                                <br>
-                                <input class="form-group input-element" type="text" name="blog[author]" value="<%= blog.author%>">
-                                <br>
-								<input class="form-group input-element" type="text" name="blog[author_image]" value="<%= blog.author_image%>">
-                                <br>
-								
-                                <input class="form-group input-element"  type="text" name="blog[category]" value="<%= blog.category%>">
-                                <br>
-                                <input class="form-group input-element" type="text" name="blog[image]" value="<%= blog.image%>">
-                                <br>
-								<input class="form-group input-element" type="text" name="blog[image_subtitle]" value="<%= blog.image_subtitle%>">
-                                <br>
-                                <textarea class="form-group input-element" name="blog[body]"><%= blog.body%></textarea>
-                                <br>
-                                <input class="submit" type="submit" value="Submit">
-                                
-                            </form>
-                        </div>
-    
-                    </div>
+				
+						 <div class="new-blog-form text-center">
+							<div class="title">
+								Edit <span>Blog</span>
+							</div>
+							<div>
+								<form action="/blogs/<%= blog._id%>?_method=PUT" method="POST">
+									<input class="form-group input-element" type="text" name="blog[title]" value="<%= blog.title%>">
+									<br>
+									<input class="form-group input-element" type="text" name="blog[description]" value="<%= blog.description%>">
+									<br>
+									<input class="form-group input-element" type="text" name="blog[author]" value="<%= blog.author%>">
+									<br>
+									<input class="form-group input-element" type="text" name="blog[author_image]" value="<%= blog.author_image%>">
+									<br>
+
+									<input class="form-group input-element"  type="text" name="blog[category]" value="<%= blog.category%>">
+									<br>
+									<input class="form-group input-element" type="text" name="blog[image]" value="<%= blog.image%>">
+									<br>
+									<input class="form-group input-element" type="text" name="blog[image_subtitle]" value="<%= blog.image_subtitle%>">
+									<br>
+									<textarea class="form-group input-element" name="blog[body]"><%= blog.body%></textarea>
+									<br>
+									<input class="submit" type="submit" value="Submit">
+
+								</form>
+								<div class="admin-control">
+								  <hr>
+								  <form action="/blogs/<%=blog._id%>?_method=DELETE" method="POST">
+									<button type="submit" class="btn btn-outline-danger">Delete Blog</button>
+								  </form>
+								 </div>
+							</div>
+
+						</div>
+                   
+			
                    
 
 

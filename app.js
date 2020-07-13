@@ -75,6 +75,18 @@ app.get("/", function(req,res){
 	})
 })
 
+app.get("/thankyou", function(req,res){
+	Blog.find({}, function(err, blogs){
+		if(err){
+			console.log("Error!");
+		}
+		else{
+			res.render("thankyou", 
+					   {mainblogs:blogs});
+		}
+	})
+})
+
 app.get("/blogs", function(req,res){
 	var perPage = 5;
     var pageQuery = parseInt(req.query.page);

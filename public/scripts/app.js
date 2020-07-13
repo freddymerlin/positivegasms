@@ -128,11 +128,37 @@ $(document).ready(function() {
 
 
 document.onreadystatechange = function() { 
-  if (document.readyState !== "complete") { 
-      document.querySelector("body").style.visibility = "hidden"; 
-      document.querySelector("#loader").style.visibility = "visible"; 
-  } else { 
-      document.querySelector("#loader").style.display = "none"; 
-      document.querySelector("body").style.visibility = "visible"; 
-  } 
+            if (document.readyState !== "complete") { 
+                document.querySelector( 
+                  "body").style.visibility = "hidden"; 
+                document.querySelector( 
+                  "#loader").style.visibility = "visible"; 
+            } else { 
+                document.querySelector( 
+                  "#loader").style.display = "none"; 
+                document.querySelector( 
+                  "body").style.visibility = "visible"; 
+            } 
+    
+  const facebook_share = document.querySelector(".facebook-btn");
+  const linkedin_share = document.querySelector(".linkedin-btn");
+  const twitter_share = document.querySelector(".twitter-btn");
+	
+  const facebook_share_2 = document.querySelector(".facebook-btn-2");
+  const linkedin_share_2 = document.querySelector(".linkedin-btn-2");
+  const twitter_share_2 = document.querySelector(".twitter-btn-2");
+  	
+  let postUrl = encodeURI(document.location.href);
+
+  facebook_share.setAttribute("href", `https://www.facebook.com/sharer.php?u=${postUrl}`)
+  twitter_share.setAttribute("href", `https://twitter.com/share?url=${postUrl}`)
+  linkedin_share.setAttribute("href", `https://www.linkedin.com/shareArticle?url=${postUrl}`)
+  
+  facebook_share_2.setAttribute("href", `https://www.facebook.com/sharer.php?u=${postUrl}`)
+  twitter_share_2.setAttribute("href", `https://twitter.com/share?url=${postUrl}`)
+  linkedin_share_2.setAttribute("href", `https://www.linkedin.com/shareArticle?url=${postUrl}`)
+ 
 }; 
+
+
+

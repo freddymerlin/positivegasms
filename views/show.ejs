@@ -1,61 +1,251 @@
-<%- include("./partials/header") %>
-                  
-            <div class="d-flex justify-content-center">
-              <div class="blog-show">
-                <a href="/blogs/sorted/<%=blog.category%>"><button type="button" class="btn btn <%=blog.category%> category btn-sm"><%=blog.category%></button></a>
-				  <div class="date"><%=blog.created%></div>	
-				  <br>
-                <h1 class="blog-title"><%=blog.title%></h1>
-                <div class="blog-subtitle">"<%=blog.description%>"</div>
-				 
-                <div class="row blog-top">
-                  <div class="col-md-6">
-                    <div class="author-info">  
-                      <span class="author-image">
-                        <img src="<%=blog.author_image%>"  alt="" >
-                      </span>
-                      <span class="author-name"><%=blog.author%></span>
-                    </div>
-                  </div>
-                  <div class="col-md-6 share-col" >
-                    <div class="share-upper">
-                      <a href=""><i class="fab fa-facebook-f"></i></a>
-                      <a href=""><i class="fab fa-twitter"></i></a>
-                      <a href=""><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                  </div>
-                </div>
-                <div class="blog-image-container">
-                  <img src="<%=blog.image%>" alt="">
-                </div>
-                <div class="image-subtitle text-center"><%=blog.image_subtitle%></div>
-                <div class="blog-content">
-                  <p><%-blog.body%></p>
-                </div>
-				  <br>
-				   
-                <div class="lower-blog-info">
-                  <hr>
-                  <div class="share-lower">
-                      <span>Share</span>
-                      <div class="social-shares">
-                          <a href=""><i class="fab fa-facebook-f"></i></a>
-                          <a href=""><i class="fab fa-twitter"></i></a>
-                          <a href=""><i class="fab fa-whatsapp"></i></a>
-                          <a href=""><i class="far fa-copy"></i></a>
-                      </div>
-                  </div>
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>PositiveGasms</title>
+		
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta property="og:title" content="<%=blog.title%> | <%=blog.category.toUpperCase()%>">
+        <meta property="og:image" content="<%=blog.image%>">
+        <meta property="og:description" content="<%=blog.description.substring(0,70)%>..">
+        <meta property="og:type" content="article">
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:title" content="<%=blog.title%> | <%=blog.category.toUpperCase()%>">
+        <meta name="twitter:description" content="<%=blog.description.substring(0,70)%>..">
+        <meta name="twitter:image" content="<%=blog.image%>">
 
-                </div>
-			  <div class="admin-control">
-				  <h3>
-					Admin Changes:   
-				  </h3>
-				  <a class="btn btn-outline-info" href="/blogs/<%= blog._id %>/edit"> Edit</a>
-				  <form action="/blogs/<%=blog._id%>?_method=DELETE" method="POST">
-					<button type="submit" class="btn btn-outline-danger">Delete Blog</button>
-				  </form>
-              </div>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+		<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+       
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+        <link rel="stylesheet" href="/stylesheets/app.css">
+        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;500;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Muli:wght@400;700;900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;800&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Work+Sans:400,700" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700|Montserrat:300" rel="stylesheet">
+    </head>
+    <body>
+	  <div id="loader" class="center"></div>
+      <div id="particle-container"></div>
+      <script type="text/javascript" src="/scripts/particles.js"> </script>
+      <script type="text/javascript" src="/scripts/app.js"> </script>
+      <div id="fb-root"></div>
+      <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v7.0" nonce="uOPcScm0"></script>
+
+      <header class="fixed-top">
+        <nav id="main-navbar" class="navbar navbar-light navbar-expand-xl py-0 fixed-top">
+          <div class="container-fluid">
+            <a href="/" class="navbar-brand"><i class="fas fa-home"></i></a>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#navLinks" aria-label="Toggle Navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navLinks">
+              <ul class="navbar-nav d-flex text-center">
+                <li class="nav-item d-xl-none">
+                  <a href="/blogs" class="nav-link">ALL BLOGS</a>
+                </li>
+				        <li class="nav-item">
+                  <a href="/blogs/sorted/superheroes" class="nav-link first-cat">SUPERHEROES</a>
+                </li>
+                <li class="nav-item">
+                  <a href="/blogs/sorted/travel" class="nav-link">TRAVEL</a>
+                </li>
+                <li class="nav-item">
+                  <a href="/blogs/sorted/entertainment" class="nav-link">ENTERTAINMENT</a>
+                </li>
+                <li class="nav-item">
+                  <a href="/blogs/sorted/food" class="nav-link">FOOD</a>
+                </li>
+                <li class="nav-item">
+                  <a href="/blogs/sorted/health" class="nav-link">HEALTH</a>
+                </li>
+                <li class="nav-item">
+                  <a href="/blogs/sorted/lifestyle" class="nav-link">LIFESTYLE</a>
+                </li>  
+              </ul>
+            </div>
+            <div class="d-none d-xl-block all-post"><a href="/blogs"><i class="far fa-file-alt"></i></a> </div> 
           </div>
-<%- include("./partials/footer") %>
- 
+        </nav>
+      </header>
+      <main class="content">
+        <div class="row d-flex justify-content-center">
+          <div class="col-12 body-contain"> 
+            <div class="container-fluid">
+              
+              <div class="d-flex justify-content-center">
+                <div class="blog-show">
+                  <a href="/blogs/sorted/<%=blog.category%>"><button type="button" class="btn btn <%=blog.category%> category btn-sm"><%=blog.category%></button></a>
+                  <div class="date"><%=blog.created%></div>	
+                  <br>
+                  <h1 class="blog-title"><%=blog.title%></h1>
+                  <div class="blog-subtitle">"<%=blog.description%>"</div>
+                  <div class="row blog-top">
+                    <div class="col-md-6">
+                      <div class="author-info">  
+                        <span class="author-image">
+                        <img src="<%=blog.author_image%>"  alt="" >
+                        </span>
+                        <span class="author-name"><%=blog.author%></span>
+                      </div>
+                    </div>
+                    <div class="col-md-6 share-col" >
+						
+                      <div class="share-upper">
+                        <a class="facebook-btn" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="twitter-btn" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="linkedin-btn" href=""><i class="fab fa-linkedin-in"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="blog-image-container">
+                    <img src="<%=blog.image%>" alt="">
+                  </div>
+                  <div class="image-subtitle text-center"><%=blog.image_subtitle%></div>
+                  <div class="blog-content">
+                    <p><%-blog.body%></p>
+                  </div>
+                  <br>
+                  <div class="lower-blog-info">
+                    <hr>
+                    <div class="share-lower">
+                      <span no-select>Share</span>
+                      <div class="social-shares">
+                        <a class="facebook-btn-2" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="twitter-btn-2" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="linkedin-btn-2" href=""><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#/"><i class=" button-mobile far fa-copy"></i></a>
+
+                        <script>
+                          let postUrl = encodeURI(document.location.href);
+                          
+                          const shareButton = document.querySelector(".button-mobile");
+                          shareButton.addEventListener('click', () =>{
+                            if(navigator.share){
+                              navigator.share({
+                                url: `${postUrl}`,
+                                title: "<%=blog.title%> | <%=blog.category.toUpperCase()%>"
+                                
+                              });
+                            } else{
+                              alert('Link share not supported on your browser!');
+                            }
+                          });
+                        </script>
+						
+                      </div>
+                    </div>
+                  </div> 
+                </div>
+              </div>
+            </div>      
+          </div>
+        </div>
+      </main>
+
+      <footer>
+              <div class="row d-flex title-footer justify-content-center align-items-center">
+                <h1 class="text-center"> P
+                  <svg viewbox="0 0 10 10">
+                    <circle class="smile" cx="5" cy="5" r="4" stroke-dashoffset="-.5" stroke-dasharray="11.5,13.6327" />
+                    <circle class="eyes" cx="5" cy="5" r="4" stroke-dashoffset="-15.5" stroke-dasharray="0,6.6327,0,17.5" />
+                  </svg>
+                  sitiveGasms </h1>
+              </div>
+              <div class="row d-flex main-footer  px-3">
+                <div class="col-lg-3 col-12 hyperlinks first side-tags"> 
+
+                  <div class="title-lower">ABOUT US<br></div><span class="info">  Eos sint repudiandae error delectus ex impedit laudantium inventore animi quia, maiores dolorem itaque aspernatur necessitatibus, temporibus nisi minima vitae odio? Similique, numquam cupiditate? <br></span>
+                  <br>
+                  <div class="col-12 social-buttons"> 
+                    <a href="#/" class="social-buttons__button social-button social-button--facebook" aria-label="Facebook">
+                      <span class="social-button__inner">
+                        <i class="fab fa-facebook-f"></i>
+                      </span>
+                    </a>
+                    <a href="#/" class="social-buttons__button social-button social-button--linkedin" aria-label="LinkedIn">
+                      <span class="social-button__inner">
+                        <i class="fab fa-linkedin-in"></i>
+                      </span>
+                    </a>
+                    <a href="#/" class="social-buttons__button social-button social-button--instagram" aria-label="Instagram">
+                      <span class="social-button__inner">
+                        <i class="fab fa-instagram"></i>
+                      </span>
+                    </a>
+                  </div>
+                  <hr class="divider d-block d-lg-none">
+                </div>
+                <div class="col-lg-6 col-12 latest-container  align-items-enter"> 
+                  <div class="latest-posts title-lower">LATEST POSTS <br></div> 
+                  <div id="latest-posts" class="d-flex justify-content-center">
+                    <a href="/blogs/<%=mainblogs[mainblogs.length-1]._id%>"><div class="image">
+                      <div class="card-container-footer">
+                        <div class="image-holder"  style="background-image:url(<%=mainblogs[mainblogs.length-1].image%>)" >
+                        </div>  
+                      </div>
+                    </div>
+                    <div class="description d-flex m=0">
+                      <span class="info"><%=(mainblogs[mainblogs.length-1].description).substring(0,70)%>..</span> 
+                    </div>
+                    </a>
+                  </div>
+                  
+                  <div id="latest-posts" class="d-flex justify-content-center">
+                    <a href="/blogs/<%=mainblogs[mainblogs.length-2]._id%>"><div class="image">
+                      <div class="card-container-footer">
+                        <div class="image-holder"  style="background-image:url(<%=mainblogs[mainblogs.length-2].image%>)" >
+                        </div>  
+                      </div>
+                    </div>
+                    <div class="description d-flex m=0">
+                      <span class="info"><%=(mainblogs[mainblogs.length-2].description).substring(0,70)%>..</span> 
+                    </div>
+                    </a>
+                  </div>
+                  <div id="latest-posts" class="d-flex justify-content-center">
+                    <a href="/blogs/<%=mainblogs[mainblogs.length-3]._id%>"><div class="image last">
+                      <div class="card-container-footer">
+                        <div class="image-holder"  style="background-image:url(<%=mainblogs[mainblogs.length-3].image%>)" >
+                        </div>  
+                      </div>
+                    </div>
+                    <div class="description last d-flex m=0">
+                      <span class="info"><%=(mainblogs[mainblogs.length-3].description).substring(0,70)%>..</span> 
+                    </div>
+                    </a>
+                  </div>
+            
+                  <hr class="divider d-block d-lg-none">
+                </div>
+                <div class="col-lg-3 col-12 hyperlinks">
+                  <div>
+                    <div class="row d-flex side-tags align-item-center">
+                      <div class="col-12">
+                        <div class="title-lower"> CONTACT <br>
+                          <a class="info" href="#">freddymerlin258@gmail.com</a><br>
+                          <span class="info">+91 999 9999999</span>
+                        </div> 
+                      </div>
+                      
+                      <div class="col-12">
+                        <div class="title-links"> CONTRIBUTE <br></div>
+                        <div class="title-links"> ADVERTISE <br></div>
+                        <div class="title-links">FEEDBACK<br></div>
+                        <hr class="divider d-block d-lg-none">
+                      </div>
+                      
+                    </div>
+                    
+                  </div> 
+                </div>
+              </div>
+      </footer>
+    </body>
+</html>
