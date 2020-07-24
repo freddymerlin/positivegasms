@@ -133,11 +133,33 @@ document.onreadystatechange = function() {
                   "body").style.visibility = "hidden"; 
                 document.querySelector( 
                   "#loader").style.visibility = "visible"; 
+				document.querySelector("i").style.visibility = "hidden"; 
             } else { 
                 document.querySelector( 
                   "#loader").style.display = "none"; 
                 document.querySelector( 
                   "body").style.visibility = "visible"; 
+				document.querySelector("i").style.visibility = "visible";
+				
+
+				let postUrl = encodeURI(document.location.href);
+
+				let shareButton = document.querySelector(".button-mobile");
+				shareButton.addEventListener('click', function(){
+				if(navigator.share){
+				  navigator.share({
+					url: `${postUrl}`,
+					title: "<%=blog.title%> | <%=blog.category.toUpperCase()%>"
+
+				  });
+				} else{
+				  alert('Link share not supported on your browser!');
+				}
+				});
+
+
+
+
             } 
     
   const facebook_share = document.querySelector(".facebook-btn");
@@ -147,7 +169,9 @@ document.onreadystatechange = function() {
   const facebook_share_2 = document.querySelector(".facebook-btn-2");
   const linkedin_share_2 = document.querySelector(".linkedin-btn-2");
   const twitter_share_2 = document.querySelector(".twitter-btn-2");
-  	
+
+
+
   let postUrl = encodeURI(document.location.href);
 
   facebook_share.setAttribute("href", `https://www.facebook.com/sharer.php?u=${postUrl}`)
@@ -161,4 +185,4 @@ document.onreadystatechange = function() {
 }; 
 
 
-
+ 
