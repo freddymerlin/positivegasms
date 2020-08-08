@@ -7,8 +7,11 @@ let express = require("express"),
 	methodOverride = require('method-override'),
 	expressSanitizer = require('express-sanitizer');
 
+//process.env.VER
+//"mongodb+srv://positivegasmdb:Creative@positivedb.5rt00.mongodb.net/<dbname>?retryWrites=true&w=majority"
+
 //mongoose.connect("mongodb://localhost:27017/database_positivegasms", { useUnifiedTopology: true, useNewUrlParser: true });
-mongoose.connect("mongodb+srv://positivegasmdb:Creative@positivedb.5rt00.mongodb.net/<dbname>?retryWrites=true&w=majority", { useUnifiedTopology: true, useNewUrlParser: true } );
+mongoose.connect(process.env.DATABASEurl, { useUnifiedTopology: true, useNewUrlParser: true } );
 app.set("view engine","ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
