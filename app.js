@@ -8,8 +8,6 @@ let express = require("express"),
 	expressSanitizer = require('express-sanitizer');
 
 //process.env.VER
-
-
 //mongoose.connect("mongodb://localhost:27017/database_positivegasms", { useUnifiedTopology: true, useNewUrlParser: true });
 
 mongoose.connect(process.env.DATABASEurl, { useUnifiedTopology: true, useNewUrlParser: true } );
@@ -166,7 +164,7 @@ app.get("/blogs/:id", function(req,res){
 app.get("/blogs/:id/edit", function(req,res){
 	Blog.findById(req.params.id, function(err, foundBlog){
 		Blog.find({}, function(err, blogs){
-			res.render("edit",{blog:foundBlog, mainblogs:blogs});
+			res.render("edit",{blog:foundBlog, mainblogs:blogs, password: process.env.NUM});
 		});
 		
 	});
