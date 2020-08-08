@@ -7,9 +7,6 @@ let express = require("express"),
 	methodOverride = require('method-override'),
 	expressSanitizer = require('express-sanitizer');
 
-//process.env.VER
-//mongoose.connect("mongodb://localhost:27017/database_positivegasms", { useUnifiedTopology: true, useNewUrlParser: true });
-
 mongoose.connect(process.env.DATABASEurl, { useUnifiedTopology: true, useNewUrlParser: true } );
 app.set("view engine","ejs");
 app.use(express.static("public"));
