@@ -7,7 +7,8 @@ let express = require("express"),
 	methodOverride = require('method-override'),
 	expressSanitizer = require('express-sanitizer');
 
-mongoose.connect("mongodb://localhost:27017/database_positivegasms", { useUnifiedTopology: true, useNewUrlParser: true });
+//mongoose.connect("mongodb://localhost:27017/database_positivegasms", { useUnifiedTopology: true, useNewUrlParser: true });
+mongoose.connect("mongodb+srv://positivegasmdb:Creative@positivedb.5rt00.mongodb.net/<dbname>?retryWrites=true&w=majority", { useUnifiedTopology: true, useNewUrlParser: true } );
 app.set("view engine","ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
@@ -181,6 +182,6 @@ app.delete("/blogs/:id", function(req,res){
 	});
 });
 
-app.listen(3000,function(){
+app.listen(process.env.PORT ||3000,function(){
 	console.log("positivegasms server has started!")
 });
